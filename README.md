@@ -1,66 +1,79 @@
-## Foundry
+# Compound v2 Liquidation Bot
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A sophisticated Solidity-based bot that demonstrates the historical price manipulation vulnerability in Compound v2 during DeFi Summer 2020.
 
-Foundry consists of:
+##  Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This project replicates the historical exploit where a liquidator gained an edge by manipulating the Open Price Feed in Compound v2. The bot demonstrates how stale but valid signed prices could be used to trigger liquidations before other market participants could react.
 
-## Documentation
+### Key Features
 
-https://book.getfoundry.sh/
+- Simulates price manipulation using stale-but-valid signed price data
+- Executes `liquidateBorrow()` on undercollateralized accounts
+- Built with Foundry for efficient testing and deployment
+- Uses mainnet forking for realistic testing conditions
+- Demonstrates the exact attack vector used on August 20, 2020
 
-## Usage
+## 🚀 Getting Started
 
-### Build
+### Prerequisites
 
-```shell
-$ forge build
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)
+- [Node.js](https://nodejs.org/) (v16 or later)
+- [Git](https://git-scm.com/)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/6ixty80/liquidation-bot.git
+cd liquidation-bot
 ```
 
-### Test
-
-```shell
-$ forge test
+2. Install dependencies:
+```bash
+forge install
 ```
 
-### Format
-
-```shell
-$ forge fmt
+3. Build the project:
+```bash
+forge build
 ```
 
-### Gas Snapshots
+### Testing
 
-```shell
-$ forge snapshot
+Run the test suite:
+```bash
+forge test
 ```
 
-### Anvil
-
-```shell
-$ anvil
+For verbose output:
+```bash
+forge test -vv
 ```
 
-### Deploy
+##  Configuration
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+The bot can be configured through environment variables:
 
-### Cast
+- `RPC_URL`: Your Ethereum node RPC URL
+- `PRIVATE_KEY`: Your wallet's private key
+- `GAS_PRICE`: Maximum gas price in wei
+- `GAS_LIMIT`: Gas limit for transactions
 
-```shell
-$ cast <subcommand>
-```
+##  Disclaimer
 
-### Help
+This project is for educational purposes only. It demonstrates a historical vulnerability that has been patched in newer versions of Compound. Do not use this code for malicious purposes.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+##  License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+##  Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+
+
+
+
